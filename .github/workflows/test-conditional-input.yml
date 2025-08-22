@@ -12,5 +12,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest-internal
     steps:
-      - name: Test
-        run: echo "This is a test for conditional Delpoy Description.\n ${{inputs.deploy-description && "\n*Deploy Description:* " + inputs.deploy-description || ''}}"
+      - name: Test With Deploy Description
+        if: ${{ inputs.deploy-description != '' }}
+        run: echo "This is a test for conditional Delpoy Description.\n ${{inputs.deploy-description && Deploy Description:" {{ inputs.deploy-description }}"
+      - name: Test Without Deploy Description
+        if: ${{ inputs.deploy-description == '' }}
+        run: echo "This is a test for conditional Delpoy Description.\n ${{inputs.deploy-description && Deploy Description:" {{ inputs.deploy-description }}"
