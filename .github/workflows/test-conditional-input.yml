@@ -1,0 +1,16 @@
+name: test-conditional-input
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy-description:
+        description: "Deploy Comments/Notes"
+        required: false
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest-internal
+    steps:
+      - name: Test
+        run: echo "This is a test for conditional Delpoy Description.\n ${{inputs.deploy-description && "*Deploy Description:* " + inputs.deploy-description || ''}}"
